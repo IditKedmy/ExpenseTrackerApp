@@ -1,18 +1,15 @@
-import {View, Text, StyleSheet} from "react-native";
 import ExpensesOutput from "../components/ExpensesOutput/ExpensesOutput";
-import {DUMMY_EXPENSES} from "../components/ExpensesOutput/DummyExpenses";
+import {ExpensesContext} from "../store/expenses-context";
+import {useContext} from "react";
 
 export default function AllExpenses() {
+  const expensesCtx = useContext(ExpensesContext);
+
   return (
-    <ExpensesOutput expenses={DUMMY_EXPENSES} expensesPeriod="Total"/>
+    <ExpensesOutput
+      expenses={expensesCtx.expenses}
+      expensesPeriod="Total"
+      fallbackText="No expenses found."
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
